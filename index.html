@@ -34,14 +34,13 @@
                         speed: data.wind.speed
                     };
                     result = template.render(context);
-                    console.log(result);
                     block = document.getElementsByClassName("result")[0];
                     block.innerHTML = result;
                     block.style.display = 'block';
 
                 })
                 .fail (function(data) {
-                    alert(data["responseJSON"]["message"])
+                    document.getElementsByClassName("result")[0].innerHTML = data["responseJSON"]["message"];
                 })
 
         };
@@ -60,7 +59,7 @@
 
         let placesAutocomplete = places(fixedOptions).configure(reconfigurableOptions);
         placesAutocomplete.on('change', e => weatherView(e.suggestion.latlng));
-        placesAutocomplete.on('error', e => alert(e.message))
+        placesAutocomplete.on('error', e => document.getElementsByClassName("result")[0].innerHTML = e.message)
 
     </script>
 </body>
