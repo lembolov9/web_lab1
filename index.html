@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet/less" type="text/css" href="static/css/index.less" />
+</head>
+<body>
+    <main>
+        <input type="search" id="address-input" placeholder="В каком городе проверим погоду?" />
+        <div class="result"></div>
+    </main>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.3/less.min.js"></script>
+    <script src="http://twitter.github.com/hogan.js/builds/3.0.1/hogan-3.0.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.16.4"></script>
+    <script>
+        const weatherView = function (coords) {
+            let setgs = {
+                url: "https://api.openweathermap.org/data/2.5/weather",
+                appId: "a120fd62ed4260a0ba1bdffbd7b09103"
+            };
+            const apiUrl = `${setgs['url']}?lat=${coords['lat']}&lon=${coords['lng']}&APPID=${setgs['appId']}&units=metric&lang=ru`;
+            $.getJSON(apiUrl)
+                .done (function (data) {
+                    let template = Hogan.compile('<div class="wrapper"><div class="main">{{description}}</div>' +
+                        '<div>Температура<br>{{temp}} градусов цельсия</div><div>Давление<br>{{pressure}} мм.рт.с.</div>' +
+                        '<div>Влажность<br>{{humidity}} %</div><div>Скорость ветра<br>{{speed}} м/c</div></div>');
+                    context = {
+                        description: data.weather[0].description,
+                        temp: data.main.temp,
+                        pressure: Math.round(data.main.pressure / 1.33322387415),
+                        humidity: data.main.humidity,
+                        speed: data.wind.speed
+                    };
+                    result = template.render(context);
+                    console.log(result);
+                    block = document.getElementsByClassName("result")[0];
+                    block.innerHTML = result;
+                    block.style.display = 'block';
+
+                })
+                .fail (function(data) {
+                    alert(data["responseJSON"]["message"])
+                })
+
+        };
+
+        const fixedOptions = {
+            appId: "plS5C0CB7CSP",
+            apiKey: "74c3b01dd23b66601057eb88f110608f",
+            container: document.querySelector('#address-input')
+        };
+        const reconfigurableOptions = {
+            type: 'city',
+            language: 'ru',
+            aroundLatLngViaIP: false,
+            latlng: true
+        };
+
+        let placesAutocomplete = places(fixedOptions).configure(reconfigurableOptions);
+        placesAutocomplete.on('change', e => weatherView(e.suggestion.latlng));
+        placesAutocomplete.on('error', e => alert(e.message))
+
+    </script>
+</body>
+</html>

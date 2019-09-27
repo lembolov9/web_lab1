@@ -1,0 +1,48 @@
+@import "variables";
+
+
+html {
+    background-color: @main-background-color;
+}
+
+.algolia-places {
+    margin: 50px 0;
+}
+
+.ap-input {
+    color: @text-color;
+    border-color: @result-border-color;
+    background-color: @result-background-color;
+}
+
+.ap-dropdown-menu {
+    background-color: @result-background-color;
+    color: @text-color;
+
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 1.5em;
+}
+
+.main {
+    font-size: 3em;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.result {
+    margin: 150px auto;
+    display: none;
+    width: @result-width;
+    border: 5px solid @result-border-color;
+    background-color: @result-background-color ;
+}
+
+.wrapper > div {
+    text-align: center;
+    color: @text-color;
+    padding: 20px;
+}
