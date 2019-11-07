@@ -1,0 +1,39 @@
+html {
+  background-color: whitesmoke;
+}
+.algolia-places {
+  margin: 50px 0;
+}
+.ap-input {
+  color: indianred;
+  border-color: antiquewhite;
+  background-color: rgba(51, 113, 149, 0.1);
+}
+.ap-dropdown-menu {
+  background-color: rgba(51, 113, 149, 0.1);
+  color: indianred;
+}
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 1.5em;
+}
+.main {
+  font-size: 3em;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+.result {
+  margin: 150px auto;
+  width: 60%;
+  border: 5px solid antiquewhite;
+  background-color: rgba(51, 113, 149, 0.1);
+}
+.wrapper > div {
+  text-align: center;
+  color: indianred;
+  padding: 20px;
+}
+.hidden {
+  display: none;
+}

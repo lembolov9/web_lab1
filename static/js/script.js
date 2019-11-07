@@ -19,6 +19,7 @@ const renderTemplate = (data) => {
 
 const showError = (data) => {
     $('.error').html(`<p>${data}</p>`);
+    $('.result').addClass('hidden')
 }
 
 const weatherView = function (coords) {
@@ -30,6 +31,7 @@ const weatherView = function (coords) {
     $.getJSON(apiUrl)
         .done ((data) => {
             renderTemplate(data)
+	    console.log(data)
         })
         .fail ((data) => {
             showError(data['responseJSON']['message']);

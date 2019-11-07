@@ -8,4 +8,4 @@
 ## Changing style
 1. Open static/css/variables
 1. Change main background color - variable @main-background-color, change result background color - variable @result-background-color
-1. After any change recompile css: in css folder: lessc index.scss index.css
+1. After any change recompile css: lessc staic/css/index.less staic/css/index.css
