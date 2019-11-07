@@ -39,8 +39,8 @@ const weatherView = function (coords) {
 
 const startApp = () => {
     const fixedOptions = {
-        appId: 'plS5C0CB7CSP',
-        apiKey: '74c3b01dd23b66601057eb88f110608f',
+        appId: 'pl3S20TLNZ8G',
+        apiKey: '490d720bb244c822e47d780b706130a7',
         container: document.querySelector('#address-input')
     };
     const reconfigurableOptions = {
