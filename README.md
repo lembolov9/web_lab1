@@ -2,7 +2,7 @@
 
 ## Installation
 1. Clone repository
-1. Install less via npm: npm install less
+1. Install dependencies via command: npm i
 1. Open index.html in your browser
 
 ## Changing style
